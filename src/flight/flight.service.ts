@@ -19,7 +19,7 @@ export class FlightService {
     }
 
     async findOne(id: string): Promise<IFlight> {
-        return await this.model.findById(id).populate('passengers');;
+        return await this.model.findById(id).populate('passengers');
     }
 
     async update(id: string, flightDTO: FlightDTO): Promise<IFlight> {
