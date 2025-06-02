@@ -8,6 +8,7 @@ import { UserService } from './user/user.service';
 
 @Module({
   imports: [
+    UserModule,
     ConfigModule.forRoot({
       envFilePath: ['.env.development'],
       isGlobal: true
@@ -15,9 +16,8 @@ import { UserService } from './user/user.service';
     MongooseModule.forRoot(process.env.URI_MONGODB, {
       autoIndex: true
     }),
-    UserModule
   ],
   controllers: [AppController],
-  providers: [AppService, UserService],
+  providers: [AppService],
 })
 export class AppModule { }
