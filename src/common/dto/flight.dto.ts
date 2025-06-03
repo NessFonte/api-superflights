@@ -12,14 +12,18 @@ export class FlightDTO {
 
     @IsNotEmpty()
     @IsString()
-    readonly originCity: string;
+    readonly airline: string;
 
     @IsNotEmpty()
     @IsString()
-    readonly destinationCity: string;
+    readonly origin_city: string;
+
+    @IsNotEmpty()
+    @IsString()
+    readonly destination_city: string;
 
     @IsNotEmpty()
     @Type(() => Date)
     @IsDate()
-    readonly flightDate: Date;
+    readonly flight_date: Date;
 }
