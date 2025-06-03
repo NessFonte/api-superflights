@@ -33,4 +33,14 @@ export class FlightService {
             message: 'Flight Deleted'
         }
     }
+
+    async add_passenger(flightId: string, passengerId: string): Promise<IFlight> {
+        return await this.model.findByIdAndUpdate(
+            flightId,
+            {
+                $addToSet: { passengers: passengerId },
+            },
+            { new: true }
+        ).populate('passengers');
+    }
 }

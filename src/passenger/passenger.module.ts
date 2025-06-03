@@ -13,6 +13,7 @@ import { PassengerSchema } from './schema/passenger.schema';
     }])
   ],
   controllers: [PassengerController],
-  providers: [PassengerService]
+  providers: [PassengerService],
+  exports: [PassengerService] //Se necesita exportar el servicio para usarlo en el FlightController
 })
 export class PassengerModule {}

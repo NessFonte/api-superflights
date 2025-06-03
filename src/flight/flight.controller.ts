@@ -1,10 +1,14 @@
-import { Body, Controller, Delete, Get, Param, Post, Put } from '@nestjs/common';
+import { Body, Controller, Delete, Get, HttpException, HttpStatus, Param, Post, Put } from '@nestjs/common';
 import { FlightService } from './flight.service';
 import { FlightDTO } from 'src/common/dto/flight.dto';
+import { PassengerService } from '../passenger/passenger.service';
 
 @Controller('api/v1/flight')
 export class FlightController {
-    constructor(private readonly flightService: FlightService) {};
+    constructor(
+        private readonly flightService: FlightService,
+        private readonly passengerService: PassengerService
+    ) { };
 
     @Post()
     create(@Body() flightDTO: FlightDTO) {
@@ -29,5 +33,13 @@ export class FlightController {
     @Delete(':id')
     delete(@Param('id') id: string) {
         return this.flightService.delete(id);
+    }
+
+    @Post(':flightId/passenger/:passengerId')
+    async add_passenger(@Param('flightId') flightId: string, @Param('passengerId') passengerId: string) {
+        const passenger = await this.passengerService.findOne(passengerId);
+        if (!passenger) throw new HttpException('Passenger Not Found', HttpStatus.NOT_FOUND);
+
+        return this.flightService.add_passenger(flightId, passengerId);
     }
 }
