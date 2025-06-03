@@ -6,6 +6,7 @@ import { MongooseModule } from '@nestjs/mongoose';
 import { UserModule } from './user/user.module';
 import { UserService } from './user/user.service';
 import { PassengerModule } from './passenger/passenger.module';
+import { FlightModule } from './flight/flight.module';
 
 @Module({
   imports: [
@@ -18,6 +19,7 @@ import { PassengerModule } from './passenger/passenger.module';
     }),
     UserModule,
     PassengerModule,
+    FlightModule,
   ],
   controllers: [AppController],
   providers: [AppService],
