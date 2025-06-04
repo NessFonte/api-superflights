@@ -8,12 +8,12 @@ export class AuthController {
     constructor(private readonly authService: AuthService) { }
 
     @UseGuards(LocalAuthGuard)
-    @Post('sigin')
+    @Post('signin')
     async singIn(@Req() req) {
         return await this.authService.signIn(req.user);
     }
 
-    @Post('singup')
+    @Post('signup')
     async singUp(@Body() userDTO: UserDTO) {
         return await this.authService.signUp(userDTO);
     }
